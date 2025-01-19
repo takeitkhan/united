@@ -19,7 +19,7 @@ import ProductImage from "@/components/ProductImage";
 
 const ProductSingle = ({ params }) => {
   const slug = params.slug;
-  const [product, setProduct] = useState([]); // set product data  
+  const [product, setProduct] = useState([]); // set product data
 
   const [loading, setLoading] = useState(true); // set loading
   const [error, setError] = useState(false); // set error
@@ -55,7 +55,7 @@ const ProductSingle = ({ params }) => {
 
   const images =
     Array.isArray(product.extra_fields[0]?.meta_value) &&
-      product.extra_fields[0]?.meta_value.length > 0
+    product.extra_fields[0]?.meta_value.length > 0
       ? product.extra_fields[0].meta_value
       : [product.featured_image]; // If no extra fields, fallback to featured_image
 
@@ -83,7 +83,6 @@ const ProductSingle = ({ params }) => {
             </div>
           </div>
         </div>
-
 
         {/* product review  */}
         <div className="container mx-auto py-2 px-3 md:px-0 ">
@@ -117,19 +116,21 @@ const ProductSingle = ({ params }) => {
                   {/* Buttons to switch between sections */}
                   <div className="button-group flex gap-5">
                     <button
-                      className={`px-4 flex items-center gap-1 py-2 ${activeSection === "details"
-                        ? "bg-navBg text-white"
-                        : "bg-productBg border border-hoverborder"
-                        }`}
+                      className={`px-4 flex items-center gap-1 py-2 ${
+                        activeSection === "details"
+                          ? "bg-navBg text-white"
+                          : "bg-productBg border border-hoverborder"
+                      }`}
                       onClick={showDetails}
                     >
                       <MdDetails /> Product Details
                     </button>
                     <button
-                      className={`px-4 py-2 flex items-center gap-1 ${activeSection === "contact"
-                        ? "bg-navBg text-white"
-                        : "bg-gray-300 border border-hoverborder"
-                        }`}
+                      className={`px-4 py-2 flex items-center gap-1 ${
+                        activeSection === "contact"
+                          ? "bg-navBg text-white"
+                          : "bg-gray-300 border border-hoverborder"
+                      }`}
                       onClick={openPopUp} // Open Get A Quote popup
                     >
                       <FaFileInvoice /> Get A Quote
@@ -141,8 +142,7 @@ const ProductSingle = ({ params }) => {
                     {activeSection === "details" ? (
                       <ProductDetails product={product} />
                     ) : (
-                      <div className="contact-form-section bg-navBg p-5 md:w-full rounded-md mt-10">
-                      </div>
+                      <div className="contact-form-section bg-navBg p-5 md:w-full rounded-md mt-10"></div>
                     )}
                   </div>
                 </div>

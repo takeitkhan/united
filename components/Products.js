@@ -34,7 +34,7 @@ const Products = () => {
         <div className="md:grid md:grid-cols-4 grid-cols-2 grid gap-3 mt-10">
           {products.map((product, productIndex) => (
             <Link
-              href={`/product/${product.slug}`}
+              href={`/products/${product.slug}`}
               key={productIndex}
               className="bg-white  py-4 p-2 rounded-md text-center hover:shadow-md duration-200 ease-in-out w-full border-b-2 hover:border-hoverborder inline-block"
             >
@@ -46,7 +46,10 @@ const Products = () => {
                 priority
                 className="mx-auto"
               ></Image>
-              <h2 className="text-base md:text-lg font-semibold mt-2"> {product?.name} </h2>
+              <h2 className="text-base md:text-lg font-semibold mt-2">
+                {" "}
+                {product?.name}{" "}
+              </h2>
             </Link>
           ))}
         </div>

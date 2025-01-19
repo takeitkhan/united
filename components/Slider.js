@@ -15,20 +15,18 @@ import Loading from "./Loading";
 
 const Hero = () => {
   const [slider, setSlider] = useState([]);
-  const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchSlider = async () => {
       try {
-        const response = await axiosInstance.get(
-          "/posts?term_type=slider"
-        );
+        const response = await axiosInstance.get("/posts?term_type=slider");
         setSlider(response.data.data);
       } catch (error) {
-        setError(error.message)
+        setError(error.message);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     };
     fetchSlider();
@@ -58,9 +56,8 @@ const Hero = () => {
         pagination={{
           clickable: true,
         }}
-        // navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper "
+        className="mySwiper"
       >
         {slider.map((slideItem, sliderIndex) => (
           <SwiperSlide key={sliderIndex}>
@@ -68,17 +65,15 @@ const Hero = () => {
               <Image
                 src={slideItem?.featured_image}
                 width={1170}
-                priority
                 height={550}
+                priority
                 quality={90}
                 alt={slideItem.name}
-                className=" object-cover w-full h-[600px]"
-              ></Image>
+                className="object-cover w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]"
+              />
             </div>
           </SwiperSlide>
         ))}
-
-
       </Swiper>
     </div>
   );
