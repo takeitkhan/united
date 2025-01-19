@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    overflow-x: hidden;
+}
+
+.productImageCover {
+    background-image: url('./../public/Image/product-category/New-Pic.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+}
+
+.productImageCover::before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.486);
+    z-index: -1;
+}
+
+.contact_section {
+    background: url('../public/Image/contact.jpg') center center no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+}
+
+.contact_section::before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.486);
+    z-index: -1;
+}
+
+
+.faq_section {
+    background: url('../public/Image/FAQ-IJARBAS.COM_-1.jpg') center center no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+}
+
+.faq_section::before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.486);
+    z-index: -1;
+}
