@@ -1,3 +1,5 @@
+"use client";
+
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -7,25 +9,42 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import MobileFooterNav from "@/components/MobileFooterNav";
 import { getNavData } from "@/helpers/getNavbarData";
+import Head from "next/head";
 import { getMediaLinkByMetaName } from "@/helpers/metaHelpers";
 import { BASE_URL } from "@/helpers/baseUrl";
+import { useEffect, useState } from "react";
+import axiosInstance from "@/helpers/axiosInstance";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-export const metadata = {
-  title: "United Machinery",
-  description: "A top industry equipment importer",
-};
+// export const metadata = {
+//   title: "United Machinery",
+//   description: "A top industry equipment importer",
+// };
 
-export default async function RootLayout({ children }) {
-  const { settings } = await getNavData();
+export default function RootLayout({ children }) {
+  const [settings, setSettings] = useState(null);
+  // Fetch settings and menu items dynamically
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const settingsRes = await axiosInstance.get("/frontend/settings");
+        setSettings(settingsRes.data);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // const { settings } = await getNavData();
+  console.log("from layout new", settings);
 
   const fav_icon = getMediaLinkByMetaName(settings, "site_faviconimg_id");
-
-  // Construct the full URL for the favicon
   const fav_url = BASE_URL + fav_icon;
 
   return (
