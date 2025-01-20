@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 export default function MobileFooterNav() {
-  const phoneNumber = "+8801234567890"; // Replace with your actual phone number
+  const phoneNumber = "+8801988557711"; // Replace with your actual phone number
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-2 z-50 sm:hidden">
