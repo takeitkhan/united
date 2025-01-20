@@ -3,8 +3,9 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import MobileFooterNav from "@/components/MobileFooterNav";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -20,9 +21,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body suppressHydrationWarning={true} className={poppins.className}>
         <Navbar />
-        <Contact />
+        <div className="hidden sm:flex">
+          <Contact />
+        </div>
         {children}
         <Footer />
+        <MobileFooterNav />
         <ToastContainer position="bottom-left" />
       </body>
     </html>
