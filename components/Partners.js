@@ -20,7 +20,7 @@ const Partners = () => {
     // Fetch partners
     const fetchPartners = async () => {
       try {
-        const res = await axiosInstance.get("/posts?term_type=clients");
+        const res = await axiosInstance.get("/posts?term_type=clients&per_page=50");
         setPartners(res.data.data);
         setLoading(false);
       } catch (error) {

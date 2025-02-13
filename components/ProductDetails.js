@@ -57,6 +57,14 @@ const ProductDetails = ({ product }) => {
                         <p className="w-full py-2">{product?.extra_fields.find(field => field.meta_name === "purchase_notes")?.meta_value}</p>
                     </div>
                 )}
+                
+                {product.description && (
+                    <div className="flex">
+                        <div dangerouslySetInnerHTML={{ __html: product.description }} />
+                    </div>
+                )}
+                
+                
 
             </div>
         </div>

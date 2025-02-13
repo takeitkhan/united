@@ -159,7 +159,7 @@ const Footer = () => {
 
       <div className="container mx-auto mt-5 text-textNavColor">
         <div className="text-sm text-center">
-          <p>Copyright © 2021 United Machinery Bangladesh. All Rights Reserved.</p>
+          <p>Copyright © 2025 United Machinery Bangladesh. All Rights Reserved.</p>
           <h2>Developed By <Link className="text-blue-400" href={`https://mathmozo.com`} target="_blank">Mathmozo IT</Link></h2>
         </div>
       </div>

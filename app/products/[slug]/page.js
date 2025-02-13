@@ -14,7 +14,7 @@ import RelatedProduct from "@/components/RelatedProduct";
 import ProductDetails from "@/components/ProductDetails";
 import GetAQuote from "@/components/GetAQuote";
 import { FaFileInvoice } from "react-icons/fa6";
-import { MdDetails } from "react-icons/md";
+import { MdDetails, MdPictureAsPdf } from "react-icons/md";
 import ProductImage from "@/components/ProductImage";
 
 const ProductSingle = ({ params }) => {
@@ -59,7 +59,7 @@ const ProductSingle = ({ params }) => {
       ? product.extra_fields[0].meta_value
       : [product.featured_image]; // If no extra fields, fallback to featured_image
 
-  const shortDesciption = stripHtmlTags(product.description);
+  //const shortDesciption = stripHtmlTags();
 
   const openPopUp = () => {
     setIsFormVisible(true);
@@ -98,7 +98,9 @@ const ProductSingle = ({ params }) => {
                     {product.name}
                   </h1>
                   <p className="leading-7 md:leading-7 text-sm md:text-base text-paraColor">
-                    {shortDesciption}
+                    {product?.extra_fields.find(field => field.meta_name === "product_short_description")?.meta_value && (
+                        <p className="w-full py-2">{product?.extra_fields.find(field => field.meta_name === "product_short_description")?.meta_value}</p>
+                    )}
                   </p>
                   <p className="mt-3">
                     <button
@@ -135,6 +137,23 @@ const ProductSingle = ({ params }) => {
                     >
                       <FaFileInvoice /> Get A Quote
                     </button>
+                    
+                    {product?.extra_fields.find(field => field.meta_name === "catalogue_pdf_link")?.meta_value && (
+                    
+                        <button
+                          className={`px-4 flex items-center gap-1 py-2 ${
+                            activeSection === "details"
+                              ? "bg-navBg text-white"
+                              : "bg-productBg border border-hoverborder"
+                          }`}
+                        >
+                          <a href={product?.extra_fields.find(field => field.meta_name === "catalogue_pdf_link")?.meta_value} download 
+                                className="flex items-center gap-1">
+                            <MdPictureAsPdf /> Download PDF Catalogue
+                          </a>
+                        </button>
+                        
+                    )}
                   </div>
 
                   {/* Conditionally render content based on active section */}

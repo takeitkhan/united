@@ -20,7 +20,7 @@ const WorkWith = () => {
     // Fetch brands
     const fetchBrands = async () => {
       try {
-        const res = await axiosInstance.get("/posts?term_type=work_with");
+        const res = await axiosInstance.get("/posts?term_type=work_with&per_page=50");
         setBrands(res.data.data);
       } catch (error) {
         setError(error.message);
