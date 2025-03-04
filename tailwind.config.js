@@ -45,7 +45,10 @@ module.exports = {
       borderColor : {
         "hoverborder" : "#002060",
         "buttonborder" : "#002060"
-      }
+      },
+      opacity: {
+        '85': '0.85',
+      },
     },
   },
   plugins: [],

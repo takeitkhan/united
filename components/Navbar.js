@@ -17,8 +17,8 @@ import {
   getMetaValueByMetaName,
   getMediaLinkByMetaName
 } from '@/helpers/metaHelpers'
+import { BASE_URL } from '@/helpers/baseUrl'
 import LogoComponent from './LogoComponent'
-
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false)
@@ -77,15 +77,14 @@ const Navbar = () => {
           <div className='flex items-center justify-between w-full'>
             <div>              
               <Link href={'/'}>
-                <LogoComponent logoData={logo}></LogoComponent>
-                {/* <Image
+                <Image
                   src={BASE_URL + logo}
                   width={150}
-                  height={150}
+                  height={70}
                   priority
                   alt='united'
                   className='w-36 md:w-48'
-                /> */}
+                />
               </Link>              
             </div>
             <div
@@ -96,10 +95,9 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Search Input */}
           <div className='relative flex items-center mx-2 w-full md:block hidden'>
             {' '}
-            {/* Adjust width here */}
+
             <input
               type='text'
               placeholder='Search...'
@@ -112,19 +110,17 @@ const Navbar = () => {
                 {suggestions.map(suggestion => (
                   <Link
                     key={suggestion.id}
-                    href={`/products/${suggestion?.slug}`} // Adjust link as needed
+                    href={`/products/${suggestion?.slug}`} 
                     className='block px-3 py-2 hover:bg-gray-200'
-                    onClick={() => setSearchTerm('')} // Clear search term on suggestion click
+                    onClick={() => setSearchTerm('')}
                   >
                     {suggestion.name}{' '}
-                    {/* Adjust to match your suggestion structure */}
                   </Link>
                 ))}
               </div>
             )}
           </div>
 
-          {/* Dynamic Social Links */}
           <div className='xl:flex flex-col hidden w-full'>
             <div className='flex items-center justify-end gap-3'>
               <Link
@@ -155,8 +151,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
-      {/* Rest of the Navbar and Menu rendering */}
+      
       <div className='bg-navBg text-white top-0'>
         <div className='container mx-auto xl:flex items-center justify-between gap-14 hidden'>
           <ul className='flex items-center justify-between w-full'>
@@ -202,16 +197,7 @@ const Navbar = () => {
           >
             {/* Logo and Close Button */}
             <div className='flex flex-row items-center justify-between bg-white p-4 border-b'>
-              <Link href={'/'}>
-                <Image
-                  src={unitedLogo}
-                  width={150}
-                  height={150}
-                  priority
-                  alt='united'
-                  className='w-32'
-                />
-              </Link>
+              <LogoComponent logoData={logo}></LogoComponent>
               <div
                 onClick={() => setIsNavOpen(false)}
                 className='text-2xl cursor-pointer text-gray-700 mt-2'

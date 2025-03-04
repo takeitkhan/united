@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 
 
 const GetAQuote = ({ visible, onClose, productName, productId }) => {
+  const [isClient, setIsClient] = useState(false);
   if (!visible) return null;
 
   const [formData, setFormData] = useState({
@@ -28,6 +29,7 @@ const GetAQuote = ({ visible, onClose, productName, productId }) => {
       product_id: productId,
       product_name: productName,
     }));
+    setIsClient(true);
   }, [productId, productName]);
 
   const handleChange = (e) => {
@@ -56,9 +58,11 @@ const GetAQuote = ({ visible, onClose, productName, productId }) => {
       // console.error('Error:', error.response?.data || error.message);
       // Handle error, e.g., show an error message
     }
-
-
   };
+
+  if (!isClient) {
+    return null; // You can return a fallback or null here
+  }
 
   return (
     <>
