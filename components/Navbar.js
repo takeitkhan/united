@@ -74,8 +74,8 @@ const Navbar = () => {
     <>
       <div className='container mx-auto w-full py-3 px-3 md:px-0 z-10'>
         <div className='flex items-center justify-between gap-3'>
-          <div className='flex items-center justify-between w-full'>
-            <div>              
+          <div className='flex items-center justify-center md:justify-between w-full'>
+            <div>
               <Link href={'/'}>
                 <Image
                   src={BASE_URL + logo}
@@ -85,11 +85,11 @@ const Navbar = () => {
                   alt='united'
                   className='w-36 md:w-48'
                 />
-              </Link>              
+              </Link>
             </div>
             <div
               onClick={() => setIsNavOpen(!isNavOpen)}
-              className='text-2xl cursor-pointer text-gray-700 block xl:hidden'
+              className='text-2xl cursor-pointer text-gray-700 block xl:hidden sm:hidden md:hidden hidden'
             >
               {isNavOpen ? <FaTimes /> : <FaBars />}
             </div>
@@ -97,7 +97,6 @@ const Navbar = () => {
 
           <div className='relative flex items-center mx-2 w-full md:block hidden'>
             {' '}
-
             <input
               type='text'
               placeholder='Search...'
@@ -110,7 +109,7 @@ const Navbar = () => {
                 {suggestions.map(suggestion => (
                   <Link
                     key={suggestion.id}
-                    href={`/products/${suggestion?.slug}`} 
+                    href={`/products/${suggestion?.slug}`}
                     className='block px-3 py-2 hover:bg-gray-200'
                     onClick={() => setSearchTerm('')}
                   >
@@ -151,7 +150,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      
+
       <div className='bg-navBg text-white top-0'>
         <div className='container mx-auto xl:flex items-center justify-between gap-14 hidden'>
           <ul className='flex items-center justify-between w-full'>
@@ -184,8 +183,6 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-
-      {/* Mobile Nav */}
       <AnimatePresence>
         {isNavOpen && (
           <motion.div
@@ -195,7 +192,6 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
             className='bg-navBg fixed top-0 left-0 h-screen w-full z-30 flex flex-col px-4 pt-4'
           >
-            {/* Logo and Close Button */}
             <div className='flex flex-row items-center justify-between bg-white p-4 border-b'>
               <LogoComponent logoData={logo}></LogoComponent>
               <div

@@ -157,7 +157,7 @@ const Footer = () => {
 
       <div className="w-full h-0.5 bg-gray-800 mt-12"></div>
 
-      <div className="container mx-auto mt-5 text-textNavColor">
+      <div className="container mx-auto mb-12 md:mb-0 mt-5 text-textNavColor">
         <div className="text-sm text-center">
           <p>Copyright © 2025 United Machinery Bangladesh. All Rights Reserved.</p>
           <h2>Developed By <Link className="text-blue-400" href={`https://mathmozo.com`} target="_blank">Mathmozo IT</Link></h2>
