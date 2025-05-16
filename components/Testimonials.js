@@ -1,6 +1,30 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import axiosInstance from "@/helpers/axiosInstance";
 
 const Testimonials = () => {
+  const [testimonials, setTestimonials] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchService = async () => {
+      try {
+        const res = await axiosInstance.get("/posts?term_type=testimonials");
+        setTestimonials(res.data.data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchService();
+  }, []);
+
+  // console.log('from testimonials', testimonials[0])
+
   return (
     <div className="py-5">
       <section className="relative isolate overflow-hidden bg-white py-5 px-3 md:px-0">
@@ -12,11 +36,15 @@ const Testimonials = () => {
         <div className="mx-auto max-w-2xl lg:max-w-4xl">
           <figure className="mt-5">
             <blockquote className="text-center font-semibold text-gray-900">
-              <p className="text-sm leading-7 text-paraColor">
-                “We just don't say but we do. We believe in action than word. We
-                believe this is key to gain the trust and love from customer.
-                Here are some comments from some of our valued clients.”
-              </p>
+              {/* <p className="text-sm leading-7 text-paraColor">
+
+                { testimonials[0]?.description}
+              </p> */}
+
+              <p
+                className="text-sm leading-7 text-paraColor"
+                dangerouslySetInnerHTML={{ __html: testimonials[0]?.description }}
+              />
             </blockquote>
           </figure>
         </div>

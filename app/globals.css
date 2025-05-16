@@ -7,7 +7,7 @@ body {
 }
 
 .productImageCover {
-    background-image: url('./../public/Image/product-category/New-Pic.png');
+    /* background-image: url('./../public/Image/product-category/New-Pic.png'); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

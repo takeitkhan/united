@@ -32,3 +32,11 @@ export const getMetaValueFromExtraFields = (jsonData, metaName) => {
   const foundItem = jsonData?.extraFields?.find((item) => item?.meta_name === metaName);
   return foundItem ? foundItem.meta_value : null;
 };
+
+
+export const getSingleImageFromExtraFields = (jsonData, metaName) => {
+  // console.log("from metaFrom extra:",jsonData, metaName);
+  const foundItem = jsonData?.extra_fields?.find((item) => item?.meta_name === metaName);
+  return foundItem ? foundItem.single_image_url : null;
+};
+
