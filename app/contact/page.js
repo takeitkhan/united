@@ -16,16 +16,37 @@ const Contact = () => {
 
       <section className="py-10">
         <div className="container mx-auto px-3 grid grid-cols-1 md:grid-cols-3 gap-10">
-          <div className="p-10 shadow-md rounded-md flex flex-col gap-4 items-center justify-center">
+          {/* <div className="p-10 shadow-md rounded-md flex flex-col gap-4 items-center justify-center">
             <FaLocationDot className="text-2xl md:text-5xl mx-auto text-textHoverColor" />
             <h2 className="text-2xl font-semibold text-textHeadingColor">
-              Address
+              Dhaka Office Address
             </h2>
             <p className=" text-sm text-paraColor text-justify">
               128/2, Kafiluddin Complex, Teknogpara (Next to Sagor-Saikat
               Convention Hall), Dhaka-Mymensingh Highway, Gazipur
             </p>
+          </div>    */}
+          <div className="p-10 shadow-md rounded-md flex flex-col gap-4 items-center justify-center">
+            <FaLocationDot className="text-2xl md:text-5xl mx-auto text-textHoverColor" />
+            <h2 className="text-2xl font-semibold text-textHeadingColor">
+              Office Address
+            </h2>
+            <div>
+              <span>Dhaka : </span>
+              <span className=" text-sm text-paraColor text-justify">
+                1/2 Proshanti Society Main Rd, Colonel Hat, Agborshah,
+                Chittagong, Bangladesh.”
+              </span>
+            </div> 
+            <div>
+              <span>Chittagong : </span>
+              <span className=" text-sm text-paraColor text-justify">
+                1/2 Proshanti Society Main Rd, Colonel Hat, Agborshah,
+                Chittagong, Bangladesh.”
+              </span>
+            </div>
           </div>
+
           <div className="p-10 shadow-md rounded-md flex flex-col gap-4 items-center justify-center">
             <MdEmail className="text-2xl md:text-5xl mx-auto text-textHoverColor" />
             <h2 className="text-2xl font-semibold text-textHeadingColor">
