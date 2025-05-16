@@ -21,8 +21,14 @@ export const getMediaLinkByMetaName = (jsonData, metaName) => {
 };
 
 
+export const getMetaValueFromExtra_Fields = (jsonData, metaName) => {
+  // console.log("from metaFrom extra:",jsonData, metaName);
+  const foundItem = jsonData?.extra_fields?.find((item) => item?.meta_name === metaName);
+  return foundItem ? foundItem.meta_value : null;
+};
+
 export const getMetaValueFromExtraFields = (jsonData, metaName) => {
   // console.log("from metaFrom extra:",jsonData, metaName);
-  const foundItem = jsonData?.extra_fields?.find((item) => item.meta_name === metaName);
+  const foundItem = jsonData?.extraFields?.find((item) => item?.meta_name === metaName);
   return foundItem ? foundItem.meta_value : null;
 };

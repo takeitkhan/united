@@ -154,20 +154,19 @@ const Footer = () => {
         </div>
 
         {/* Gallery Section with 'See More' Option */}
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-2">
           {galleryLimit.map((post, index) => (
-            <div key={post.id}>
-              <div className="border rounded overflow-hidden">
+            <div key={post.id} className="w-[70px] h-[50px] border rounded overflow-hidden">
                 <Image
                   src={post.featured_image}
                   alt={post.name || "Gallery Image"}
                   width={300}
                   priority
                   height={300}
-                  className="w-full cursor-pointer"
+                  className="w-full h-full object-cover cursor-pointer"
                   onClick={() => openFullscreen(index)} // Open fullscreen on click
                 />
-              </div>
+             
             </div>
           ))}
 

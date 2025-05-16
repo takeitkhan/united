@@ -16,7 +16,7 @@ import GetAQuote from '@/components/GetAQuote'
 import { FaFileInvoice } from 'react-icons/fa6'
 import { MdDetails, MdPictureAsPdf } from 'react-icons/md'
 import ProductImage from '@/components/ProductImage'
-import { getMetaValueFromExtraFields } from '@/helpers/metaHelpers'
+import {  getMetaValueFromExtra_Fields } from '@/helpers/metaHelpers'
 
 function ProductSingleClient ({ slug }) {
   const [product, setProduct] = useState([]) // set product data
@@ -53,12 +53,7 @@ function ProductSingleClient ({ slug }) {
   if (loading) return <Loading />
   if (error) return <div>{error}</div>
 
-  // const images =
-  //   Array.isArray(product.extra_fields[0]?.meta_value) &&
-  //   product.extra_fields[0]?.meta_value.length > 0
-  //     ? product.extra_fields[0].meta_value
-  //     : [product.featured_image] // If no extra fields, fallback to featured_image
- const images =getMetaValueFromExtraFields(product,"product_extra_images")
+ const images =getMetaValueFromExtra_Fields(product,"product_extra_images")
     
 
   //const shortDesciption = stripHtmlTags();

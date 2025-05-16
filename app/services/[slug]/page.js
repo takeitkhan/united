@@ -5,6 +5,7 @@ import Image from "next/image";
 import axiosInstance from "@/helpers/axiosInstance";
 import Loading from "@/components/Loading";
 import { stripHtmlTags } from "@/helpers/truncate";
+import { getMetaValueFromExtra_Fields } from "@/helpers/metaHelpers";
 
 const page = ({ params }) => {
   const service = params.slug;
@@ -35,6 +36,12 @@ const page = ({ params }) => {
   const [isCategory, setIsCategory] = useState(false);
   const [isOpenBar, setIswOpenBar] = useState(false);
 
+
+const coverImage=getMetaValueFromExtra_Fields(services, "cover_image")
+
+
+
+  
   const handleProductCategory = (tabname) => {
     setDropdown(tabname);
     setIsCategory(!isCategory);
