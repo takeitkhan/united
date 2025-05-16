@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -27,6 +27,7 @@ const Navbar = () => {
   const [settings, setSettings] = useState(null)
   const [searchTerm, setSearchTerm] = useState('')
   const [suggestions, setSuggestions] = useState([])
+  const searchRef = useRef(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,8 +45,7 @@ const Navbar = () => {
   }, [])
 
   const facebookLink = getMetaValueByMetaName(settings, 'facebook_url') || '#'
-  const instagramLink =
-    getMetaValueByMetaName(settings, 'instagram_url') || '#'
+  const instagramLink = getMetaValueByMetaName(settings, 'instagram_url') || '#'
   const linkedinLink = getMetaValueByMetaName(settings, 'linkedin_url') || '#'
   const youtubeLink = getMetaValueByMetaName(settings, 'youtube_url') || '#'
   const logo = getMediaLinkByMetaName(settings, 'site_logoimg_id') || '#'
@@ -68,6 +68,22 @@ const Navbar = () => {
 
     fetchSuggestions()
   }, [searchTerm])
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target )
+      ) {
+        setSuggestions([])
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   const toggleSubMenu = (id) => {
     setExpandedMenus(prev => ({
@@ -92,14 +108,19 @@ const Navbar = () => {
               />
             </Link>
 
-            {/* Search + Hamburger (flex-grow container) */}
             <div className='flex items-center gap-2 w-full justify-end'>
-              <div className='relative w-full max-w-xs hidden md:block'>
+              <div
+                ref={searchRef}
+                className='relative w-full max-w-xs hidden md:block'
+              >
                 <input
                   type='text'
                   placeholder='Search...'
                   value={searchTerm}
                   onChange={e => setSearchTerm(e.target.value)}
+                  onBlur={() => {
+                    setTimeout(() => setSuggestions([]), 100)
+                  }}
                   className='border border-gray-300 py-2 px-3 w-full focus:outline-none focus:ring focus:ring-blue-50'
                 />
                 {suggestions.length > 0 && (
@@ -117,7 +138,7 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-              {/* ✅ Hamburger now to the right of search */}
+
               <div
                 onClick={() => setIsNavOpen(!isNavOpen)}
                 className='text-2xl cursor-pointer text-gray-700 block xl:hidden'
