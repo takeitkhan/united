@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 // === icons ====
 import { MdEmail } from "react-icons/md";
 import { IoCallSharp } from "react-icons/io5";
-import Link from "next/link";
 import { getMetaValueByMetaName } from "@/helpers/metaHelpers";
 import axiosInstance from "@/helpers/axiosInstance";
 
