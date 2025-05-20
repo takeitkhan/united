@@ -45,7 +45,9 @@ const Aboutus = () => {
           </h2>
           <Link
             href={"/about-us"}
-            className="bg-navBg p-2 px-5 mt-5 text-white rounded-sm inline-block font-semibold text-sm uppercase hover:bg-navHoverColor duration-150 ease-in-out"
+            className="bg-navBg p-2 px-5 mt-5 text-white rounded-sm 
+            inline-block font-semibold text-sm uppercase hover:bg-navHoverColor
+             duration-150 ease-in-out"
           >
             Read more
           </Link>
