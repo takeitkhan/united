@@ -21,9 +21,10 @@ const Contact = () => {
       });
   }, []);
 
-  const phone = getMetaValueByMetaName(settings, "whatsapp_no") || "#";
+  const phone = getMetaValueByMetaName(settings, "company_phone") || "";
+  const mail = getMetaValueByMetaName(settings, "company_email") || "";
   //  const phone="+8801988557711"
-  const mail = "info@umbd.net";
+  // const mail = "info@umbd.net";
 
   return (
     <div className="right-0 top-1/2 z-10 fixed">

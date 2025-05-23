@@ -1,9 +1,34 @@
-import React from "react";
+"use client";
 
+import axiosInstance from "@/helpers/axiosInstance";
+import { getMetaValueByMetaName } from "@/helpers/metaHelpers";
+import React, { useEffect, useState } from "react";
 import { FaLocationDot, FaPhoneFlip } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 
 const Contact = () => {
+
+ const [settings, setSettings] = useState(null);
+
+  useEffect(() => {
+    axiosInstance
+      .get("/frontend/settings")
+      .then((response) => {
+        setSettings(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching settings:", error);
+      });
+  }, []);
+
+  const office_location_dhaka = getMetaValueByMetaName(settings, "office_location") || "";
+  const office_location_chittagong = getMetaValueByMetaName(settings, "office_location_chittagong") || "";
+  const phone = getMetaValueByMetaName(settings, "company_phone") || "";
+  const mail = getMetaValueByMetaName(settings, "company_email") || "";
+
+
+
+
   return (
     <>
       <section className="contact_section py-20">
@@ -34,15 +59,13 @@ const Contact = () => {
             <div>
               <span>Dhaka : </span>
               <span className=" text-sm text-paraColor text-justify">
-                1/2 Proshanti Society Main Rd, Colonel Hat, Agborshah,
-                Chittagong, Bangladesh.”
+                {office_location_dhaka}
               </span>
             </div> 
             <div>
               <span>Chittagong : </span>
               <span className=" text-sm text-paraColor text-justify">
-                1/2 Proshanti Society Main Rd, Colonel Hat, Agborshah,
-                Chittagong, Bangladesh.”
+              {office_location_chittagong}
               </span>
             </div>
           </div>
@@ -52,14 +75,14 @@ const Contact = () => {
             <h2 className="text-2xl font-semibold text-textHeadingColor">
               Email
             </h2>
-            <p className="text-sm text-paraColor text-justify">info@umbd.net</p>
+            <p className="text-sm text-paraColor text-justify">{mail}</p>
           </div>
           <div className="p-10 shadow-md rounded-md flex flex-col gap-4 items-center justify-center">
             <FaPhoneFlip className="text-2xl md:text-5xl mx-auto text-textHoverColor" />
             <h2 className="text-2xl font-semibold text-textHeadingColor">
               Phone
             </h2>
-            <p className="text-sm text-paraColor text-justify">01988 557711</p>
+            <p className="text-sm text-paraColor text-justify">{phone}</p>
           </div>
         </div>
       </section>
