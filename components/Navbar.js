@@ -66,8 +66,6 @@ const Navbar = () => {
   const whatsappNo = getMetaValueByMetaName(settings, "whatsapp_no") || "#";
   const whatsappLink = `https://wa.me/${whatsappNo}`;
 
-
-
   useEffect(() => {
     const fetchSuggestions = async () => {
       if (searchTerm.length > 0) {
@@ -122,50 +120,48 @@ const Navbar = () => {
                 className="w-36 md:w-48"
               />
             </Link>
-
-            
-
           </div>
 
-{/* search */}
-<div className="flex items-center gap-2 w-full justify-end">
-              <div
-                ref={searchRef}
-                className="relative w-full max-w-xs hidden md:block"
-              >
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  onBlur={() => {
-                    setTimeout(() => setSuggestions([]), 100);
-                  }}
-                  className="border border-gray-300 py-2 px-3 w-full focus:outline-none focus:ring focus:ring-blue-50"
-                />
-                {suggestions.length > 0 && (
-                  <div className="absolute top-10 left-0 right-0 bg-white border border-gray-300 mt-1 z-20">
-                    {suggestions.map((suggestion) => (
-                      <Link
-                        key={suggestion.id}
-                        href={`/products/${suggestion?.slug}`}
-                        className="block px-3 py-2 hover:bg-gray-200"
-                        onClick={() => setSearchTerm("")}
-                      >
-                        {suggestion.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <div
-                onClick={() => setIsNavOpen(!isNavOpen)}
-                className="text-2xl cursor-pointer text-gray-700 block xl:hidden"
-              >
-                {isNavOpen ? <FaTimes /> : <FaBars />}
-              </div>
+          {/* search */}
+          <div className="flex items-center gap-2 w-full justify-end">
+            <div
+              ref={searchRef}
+              className="relative w-full max-w-xs hidden md:block"
+            >
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onBlur={() => {
+                  setTimeout(() => setSuggestions([]), 100);
+                }}
+                className="border border-gray-300 py-2 px-3 w-full focus:outline-none 
+                focus:ring focus:ring-blue-50"
+              />
+              {suggestions.length > 0 && (
+                <div className="absolute top-10 left-0 right-0 bg-white border border-gray-300 mt-1 z-20">
+                  {suggestions.map((suggestion) => (
+                    <Link
+                      key={suggestion.id}
+                      href={`/products/${suggestion?.slug}`}
+                      className="block px-3 py-2 hover:bg-gray-200"
+                      onClick={() => setSearchTerm("")}
+                    >
+                      {suggestion.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
+
+            <div
+              onClick={() => setIsNavOpen(!isNavOpen)}
+              className="text-2xl cursor-pointer text-gray-700 block xl:hidden"
+            >
+              {isNavOpen ? <FaTimes /> : <FaBars />}
+            </div>
+          </div>
 
           <div className="xl:flex flex-col hidden w-full">
             {/* <div className='flex items-center justify-end gap-3'>

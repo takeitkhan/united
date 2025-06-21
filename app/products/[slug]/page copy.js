@@ -1,14 +1,13 @@
 // app/product/[slug].js
-import { BASE_URL } from '@/helpers/baseUrl';
-import ProductsClient from '../ClientsPages/ProductsClient'
+import ProductSingleClient from '@/app/ClientsPages/ProductsSingleClient'
 import { fetchMetaData, generateMetadataHelper } from '@/helpers/axiosInstance'
+import { BASE_URL } from '@/helpers/baseUrl';
 
 export async function generateMetadata ({ params, searchParams }, parent) {
-  // Await the params object to ensure you're accessing it properly
   const { slug } = await params
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL
-   const apiEndPointUrl = `${BASE_URL}/api/v1/post?slug=${slug}`;
+    const apiEndPointUrl = `${BASE_URL}/api/v1/post?slug=${slug}`;
 
   try {
     const product = await fetchMetaData(apiEndPointUrl)
@@ -22,5 +21,5 @@ export default async function ProductSingle ({ params }) {
   // Await params and destructure the slug
   const { slug } = await params
 
-  return <ProductsClient slug={slug} />
+  return <ProductSingleClient slug={slug} />
 }

@@ -18,10 +18,10 @@ import { MdDetails, MdPictureAsPdf } from 'react-icons/md'
 import ProductImage from '@/components/ProductImage'
 import {  getMetaValueFromExtra_Fields } from '@/helpers/metaHelpers'
 
-function ProductSingleClient ({ slug }) {
-  const [product, setProduct] = useState([]) // set product data
+function ProductSingleClient ({ slug,product }) {
+  // const [product, setProduct] = useState([]) // set product data
 
-  const [loading, setLoading] = useState(true) // set loading
+  const [loading, setLoading] = useState(false) // set loading
   const [error, setError] = useState(false) // set error
   const [activeSection, setActiveSection] = useState('details') // Default to 'details'
 
@@ -36,19 +36,19 @@ function ProductSingleClient ({ slug }) {
     setActiveSection('contact') // Set to 'contact' on button click
   }
 
-  useEffect(() => {
-    const fetchSingleProduct = async () => {
-      try {
-        const res = await axiosInstance.get(`/post?slug=${slug}`) // Use axiosInstance
-        setProduct(res.data.data)
-      } catch (error) {
-        setError('Error', error.message)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchSingleProduct()
-  }, [])
+  // useEffect(() => {
+  //   const fetchSingleProduct = async () => {
+  //     try {
+  //       const res = await axiosInstance.get(`/post?slug=${slug}`) // Use axiosInstance
+  //       setProduct(res.data.data)
+  //     } catch (error) {
+  //       setError('Error', error.message)
+  //     } finally {
+  //       setLoading(false)
+  //     }
+  //   }
+  //   fetchSingleProduct()
+  // }, [])
 
   if (loading) return <Loading />
   if (error) return <div>{error}</div>

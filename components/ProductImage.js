@@ -29,7 +29,7 @@ const ProductImage = ({ product, images }) => {
     }
   };
 
-console.log("from singe product:", images)
+// console.log("from singe product:", images)
 
 
   return (
