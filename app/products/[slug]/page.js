@@ -35,28 +35,28 @@ export async function generateMetadata({ params }) {
     );
 
     return {
-      title: product?.meta_title || product.name || "Product Details",
+      title: product?.meta_title || product?.name || "Product Details",
       description:
-        product.meta_description?.slice(0, 160) ||  short_des?.slice(0, 160) ||
+        product?.meta_description?.slice(0, 160) ||  short_des?.slice(0, 160) ||
         cleanDescription?.slice(0, 160) ||
-        "View details of this product.",
+        "View details of this product?.",
       openGraph: {
-        title: product?.meta_title || product.name,
+        title: product?.meta_title || product?.name,
         description:
           product?.meta_description?.slice(0, 160) || short_des?.slice(0, 160) ||
           cleanDescription?.slice(0, 160),
         images: [
           {
             url: product?.featured_image || "/default-image.jpg",
-            alt: product.name,
+            alt: product?.name,
           },
         ],
       },
       twitter: {
         card: "summary_large_image",
-        title: product?.meta_title || product.name,
+        title: product?.meta_title || product?.name,
         description:
-          product.meta_description?.slice(0, 160) || short_des?.slice(0, 160) ||
+          product?.meta_description?.slice(0, 160) || short_des?.slice(0, 160) ||
           cleanDescription?.slice(0, 160),
         images: [product?.featured_image || "/default-image.jpg"],
       },

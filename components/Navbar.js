@@ -14,17 +14,6 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
-// import {
-//   FaChevronRight,
-//   FaChevronLeft,
-//   FaFacebookF,
-//   FaYoutube,
-//   FaLinkedin,
-//   FaInstagram,
-//   FaWhatsappSquare,
-//   FaTimes,
-// } from "react-icons/fa";
-
 import axiosInstance from "@/helpers/axiosInstance";
 import {
   getMetaValueByMetaName,
@@ -46,6 +35,9 @@ const Navbar = () => {
     const fetchData = async () => {
       try {
         const menuRes = await axiosInstance.get("/menus?menu=1");
+
+        console.log("from navbar : ", menuRes);
+
         setMenus(menuRes.data.data.items);
         const settingsRes = await axiosInstance.get("/frontend/settings");
         setSettings(settingsRes.data);
