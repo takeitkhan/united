@@ -27,6 +27,10 @@ const CategorySection = () => {
     fetchCategory()
   }, [])
 
+
+const sortedCategories = categoryItems.sort((a, b) => a.name.localeCompare(b.name));
+
+
   return (
     <div className='basis-[30%]'>
       {/* Toggle Button for Categories on mobile */}
@@ -57,7 +61,7 @@ const CategorySection = () => {
             scrollbarColor: '#888 #e0e0e0' // Scrollbar color
           }}
         >
-          {categoryItems?.map(category => (
+          {sortedCategories?.map(category => (
             <div
               className='border-b border-b-slate-100 hover:bg-slate-200 px-1 py-1'
               key={category.id}

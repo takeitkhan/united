@@ -12,7 +12,7 @@ const Products = () => {
     // fetch product
     const fetchProduct = async () => {
       try {
-        const res = await axiosInstance.get("/posts?term_type=product");
+        const res = await axiosInstance.get("/posts?term_type=product&per_page=12&is_featured=Yes");
         setProducts(res.data.data);
       } catch (error) {
         console.log(error.message);

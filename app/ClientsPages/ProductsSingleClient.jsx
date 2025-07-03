@@ -16,11 +16,12 @@ import GetAQuote from '@/components/GetAQuote'
 import { FaFileInvoice } from 'react-icons/fa6'
 import { MdDetails, MdPictureAsPdf } from 'react-icons/md'
 import ProductImage from '@/components/ProductImage'
+import {  getMetaValueFromExtra_Fields } from '@/helpers/metaHelpers'
 
-function ProductSingleClient ({ slug }) {
-  const [product, setProduct] = useState([]) // set product data
+function ProductSingleClient ({ slug,product }) {
+  // const [product, setProduct] = useState([]) // set product data
 
-  const [loading, setLoading] = useState(true) // set loading
+  const [loading, setLoading] = useState(false) // set loading
   const [error, setError] = useState(false) // set error
   const [activeSection, setActiveSection] = useState('details') // Default to 'details'
 
@@ -35,28 +36,25 @@ function ProductSingleClient ({ slug }) {
     setActiveSection('contact') // Set to 'contact' on button click
   }
 
-  useEffect(() => {
-    const fetchSingleProduct = async () => {
-      try {
-        const res = await axiosInstance.get(`/post?slug=${slug}`) // Use axiosInstance
-        setProduct(res.data.data)
-      } catch (error) {
-        setError('Error', error.message)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchSingleProduct()
-  }, [])
+  // useEffect(() => {
+  //   const fetchSingleProduct = async () => {
+  //     try {
+  //       const res = await axiosInstance.get(`/post?slug=${slug}`) // Use axiosInstance
+  //       setProduct(res.data.data)
+  //     } catch (error) {
+  //       setError('Error', error.message)
+  //     } finally {
+  //       setLoading(false)
+  //     }
+  //   }
+  //   fetchSingleProduct()
+  // }, [])
 
   if (loading) return <Loading />
   if (error) return <div>{error}</div>
 
-  const images =
-    Array.isArray(product.extra_fields[0]?.meta_value) &&
-    product.extra_fields[0]?.meta_value.length > 0
-      ? product.extra_fields[0].meta_value
-      : [product.featured_image] // If no extra fields, fallback to featured_image
+ const images =getMetaValueFromExtra_Fields(product,"product_extra_images")
+    
 
   //const shortDesciption = stripHtmlTags();
 
@@ -89,7 +87,7 @@ function ProductSingleClient ({ slug }) {
             <div className='md:w-full'>
               <div className='md:flex md:justify-between gap-5'>
                 <div className='mx-auto p-5 border border-gray-200 w-full md:h-1/3'>
-                  <ProductImage product={product} />
+                  <ProductImage product={product} images={images} />
                 </div>
 
                 <div className='md:w-2/3'>

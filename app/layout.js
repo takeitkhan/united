@@ -37,7 +37,7 @@ export default async function RootLayout({ children }) {
 
       <body suppressHydrationWarning={true} className={poppins.className}>
         <Navbar />
-        <div className="hidden sm:flex">
+        <div className="">
           <Contact />
         </div>
         {children}

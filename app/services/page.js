@@ -18,8 +18,7 @@ import { FaAngleDown } from "react-icons/fa";
 import { AiOutlineBars } from "react-icons/ai";
 import axiosInstance from "@/helpers/axiosInstance";
 
-const page = () => {
-  const productList = [
+ const productList = [
     {
       product_image: product2,
       Product_title: "1.5-3.5T Electric Forklift",
@@ -56,6 +55,8 @@ const page = () => {
       product_content: "1.0-1.5T Stand-on VNA Three Way Forklift  ",
     },
   ];
+const page = () => {
+ 
 
   const [dropdown, setDropdown] = useState(null);
   const [isCategory, setIsCategory] = useState(false);

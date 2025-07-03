@@ -10,6 +10,8 @@ import "swiper/css/pagination";
 // import required modules
 import { Autoplay, Pagination } from "swiper/modules";
 import Loading from "./Loading";
+import Link from "next/link";
+import { getMetaValueFromExtraFields } from "@/helpers/metaHelpers";
 
 const WorkWith = () => {
   const [brands, setBrands] = useState([]);
@@ -20,7 +22,9 @@ const WorkWith = () => {
     // Fetch brands
     const fetchBrands = async () => {
       try {
-        const res = await axiosInstance.get("/posts?term_type=work_with&per_page=50");
+        const res = await axiosInstance.get(
+          "/posts?term_type=work_with&per_page=50"
+        );
         setBrands(res.data.data);
       } catch (error) {
         setError(error.message);
@@ -38,6 +42,8 @@ const WorkWith = () => {
   if (error) {
     return <p className="text-red-500 text-center">{error}</p>;
   }
+
+ 
 
   return (
     <div className="container mx-auto px-3 py-5">
@@ -74,7 +80,11 @@ const WorkWith = () => {
       >
         {brands.map((brand, index) => (
           <SwiperSlide key={index}>
-            <div className="border border-gray-300 rounded-md p-2 mx-auto hover:shadow-2xl duration-150 ease-in-out mt-5 w-full">
+            <Link
+              href={getMetaValueFromExtraFields(brand, "extra_link")|| `#`}
+              className="border border-gray-300 rounded-md p-2 mx-auto hover:shadow-2xl duration-150 ease-in-out mt-5 w-full"
+            >
+             
               <Image
                 src={brand?.featured_image}
                 width={300}
@@ -83,7 +93,7 @@ const WorkWith = () => {
                 priority
                 className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-36 lg:w-32 lg:h-40 object-contain mx-auto"
               />
-            </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

@@ -10,10 +10,10 @@ import {
   FaLinkedin,
   FaInstagram,
   FaWhatsappSquare,
-  FaTimes
+  FaTimes,
 } from "react-icons/fa";
 import axiosInstance from "@/helpers/axiosInstance";
-import { getMetaValueByMetaName } from '@/helpers/metaHelpers';
+import { getMetaValueByMetaName } from "@/helpers/metaHelpers";
 
 const Footer = () => {
   const [gallery, setGallery] = useState([]);
@@ -23,24 +23,25 @@ const Footer = () => {
   const [menus, setMenus] = useState([]);
   const [settings, setSettings] = useState(null);
 
-
   // Fetch gallery data from API
   useEffect(() => {
-
     // Fetch menu
-    const menuRes = axiosInstance.get("/menus?menu=3").then(response => {
-      setMenus(response.data.data.items);
-    })
-      .catch(error => {
-        console.error('Error fetching settings:', error);
+    const menuRes = axiosInstance
+      .get("/menus?menu=3")
+      .then((response) => {
+        setMenus(response.data.data.items);
+      })
+      .catch((error) => {
+        console.error("Error fetching settings:", error);
       });
 
-    axiosInstance.get('/frontend/settings')
-      .then(response => {
+    axiosInstance
+      .get("/frontend/settings")
+      .then((response) => {
         setSettings(response.data);
       })
-      .catch(error => {
-        console.error('Error fetching settings:', error);
+      .catch((error) => {
+        console.error("Error fetching settings:", error);
       });
 
     const fetchGallery = async () => {
@@ -55,11 +56,15 @@ const Footer = () => {
   }, []);
 
   // Get social links dynamically with fallback to '#'
-  const facebookLink = getMetaValueByMetaName(settings, 'facebook_url') || '#';
-  const youtubeLink = getMetaValueByMetaName(settings, 'youtube_url') || '#';
-  const linkedinLink = getMetaValueByMetaName(settings, 'linkedin_url') || '#';
-  const instagramLink = getMetaValueByMetaName(settings, 'instagram_url') || '#';
-  const whatsappLink = getMetaValueByMetaName(settings, 'whatsapp_url') || '#';
+  const facebookLink = getMetaValueByMetaName(settings, "facebook_url") || "#";
+  const youtubeLink = getMetaValueByMetaName(settings, "youtube_url") || "#";
+  const linkedinLink = getMetaValueByMetaName(settings, "linkedin_url") || "#";
+  const instagramLink =
+    getMetaValueByMetaName(settings, "instagram_url") || "#";
+  const whatsappNo = getMetaValueByMetaName(settings, "whatsapp_no") || "#";
+
+  const whatsappLink = `https://wa.me/${whatsappNo}`;
+
   // Limiting gallery display to 4 images
   const galleryLimit = gallery.slice(0, 8); // Get only first 3 images
 
@@ -92,12 +97,19 @@ const Footer = () => {
     <div className="bg-footerBg text-white py-8 px-3 md:px-0">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
-          <h2 className="md:text-xl font-semibold text-lg capitalize"> Navigation</h2>
+          <h2 className="md:text-xl font-semibold text-lg capitalize">
+            {" "}
+            Navigation
+          </h2>
           <div className="flex flex-col gap-6 mt-5">
             {menus.map((item) => (
-              <Link key={item?.id} href={item.link} className="flex items-center gap-2 text-textNavColor text-sm">
+              <Link
+                key={item?.id}
+                href={item.link}
+                className="flex items-center gap-2 text-textNavColor text-sm"
+              >
                 <FaChevronRight className="text-sm" /> {item.label}
-              </Link>              
+              </Link>
             ))}
           </div>
         </div>
@@ -105,39 +117,56 @@ const Footer = () => {
         <div className="mt-8 md:mt-0">
           <h2 className="md:text-xl font-semibold text-lg">Connect with us</h2>
           <div className="flex gap-5 mt-5">
-            <Link href={facebookLink} className="bg-facebookBg p-1.5 rounded-full text-white">
+            <Link
+              href={facebookLink}
+              className="bg-facebookBg p-1.5 rounded-full text-white"
+            >
               <FaFacebookF />
             </Link>
-            <Link href={youtubeLink} className="bg-youtubeBg p-1.5 rounded-full text-white">
+            <Link
+              href={youtubeLink}
+              className="bg-youtubeBg p-1.5 rounded-full text-white"
+            >
               <FaYoutube />
             </Link>
-            <Link href={linkedinLink} className="bg-linkedinBg p-1.5 rounded-full text-white">
+            <Link
+              href={linkedinLink}
+              className="bg-linkedinBg p-1.5 rounded-full text-white"
+            >
               <FaLinkedin />
             </Link>
-            <Link href={instagramLink} className="bg-instagramBg p-1.5 rounded-full text-white">
+            <Link
+              href={instagramLink}
+              className="bg-instagramBg p-1.5 rounded-full text-white"
+            >
               <FaInstagram />
             </Link>
-            <Link href={whatsappLink} className="bg-whatsappBg p-1.5 rounded-full text-white">
+
+            <Link
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-whatsappBg p-1.5 rounded-full text-white"
+            >
               <FaWhatsappSquare />
             </Link>
           </div>
         </div>
 
         {/* Gallery Section with 'See More' Option */}
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-2">
           {galleryLimit.map((post, index) => (
-            <div key={post.id}>
-              <div className="border rounded overflow-hidden">
+            <div key={post.id} className="w-[70px] h-[50px] border rounded overflow-hidden">
                 <Image
                   src={post.featured_image}
                   alt={post.name || "Gallery Image"}
                   width={300}
                   priority
                   height={300}
-                  className="w-full cursor-pointer"
+                  className="w-full h-full object-cover cursor-pointer"
                   onClick={() => openFullscreen(index)} // Open fullscreen on click
                 />
-              </div>
+             
             </div>
           ))}
 
@@ -159,8 +188,19 @@ const Footer = () => {
 
       <div className="container mx-auto mb-12 md:mb-0 mt-5 text-textNavColor">
         <div className="text-sm text-center">
-          <p>Copyright © 2025 United Machinery Bangladesh. All Rights Reserved.</p>
-          <h2>Developed By <Link className="text-blue-400" href={`https://mathmozo.com`} target="_blank">Mathmozo IT</Link></h2>
+          <p>
+            Copyright © 2025 United Machinery Bangladesh. All Rights Reserved.
+          </p>
+          <h2>
+            Developed By{" "}
+            <Link
+              className="text-blue-400"
+              href={`https://mathmozo.com`}
+              target="_blank"
+            >
+              Mathmozo IT
+            </Link>
+          </h2>
         </div>
       </div>
 
