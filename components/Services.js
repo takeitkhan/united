@@ -22,7 +22,7 @@ const Services = () => {
 
   return (
     <div className="">
-      <div className=" px-3 bg-sectionBg py-5">
+      <div className=" px-3 bg-sectionBg py-8">
         <div className="container mx-auto">
           <div>
             <h2 className="text-center md:text-3xl text-xl font-semibold text-textHeadingColor">

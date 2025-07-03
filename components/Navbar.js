@@ -125,9 +125,9 @@ const Navbar = () => {
                 placeholder="Search..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                onBlur={() => {
-                  setTimeout(() => setSuggestions([]), 100);
-                }}
+                // onBlur={() => {
+                //   setTimeout(() => setSuggestions([]), 100);
+                // }}
                 className="border border-gray-300 py-2 px-3 w-full focus:outline-none 
                 focus:ring focus:ring-blue-50"
               />
@@ -136,6 +136,7 @@ const Navbar = () => {
                   {suggestions.map((suggestion) => (
                     <Link
                       key={suggestion.id}
+                      // target="_blank"
                       href={`/products/${suggestion?.slug}`}
                       className="block px-3 py-2 hover:bg-gray-200"
                       onClick={() => setSearchTerm("")}

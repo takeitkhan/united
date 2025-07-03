@@ -22,7 +22,7 @@ const Products = () => {
   }, []);
 
   return (
-    <div className="py-5 px-3 md:px-0 mt-20 bg-productBg">
+    <div className="py-8 px-3 md:px-0  bg-productBg">
       <div className="container mx-auto">
         <div>
           <h2 className="text-center md:text-3xl text-xl font-semibold text-textHeadingColor">
