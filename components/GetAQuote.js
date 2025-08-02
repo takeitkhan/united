@@ -14,8 +14,8 @@ const GetAQuote = ({ visible, onClose, productName, productId }) => {
 
   const [formData, setFormData] = useState({
     subject: "Quotation Query",
-    product_id: "", // Pre-populate with the productId prop
-    product_name: "", // Pre-populate with the productName prop
+    product_id: "", 
+    product_name: "", 
     name: "",
     email: "",
     phone: "",
