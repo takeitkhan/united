@@ -36,7 +36,7 @@ const Navbar = () => {
       try {
         const menuRes = await axiosInstance.get("/menus?menu=1");
 
-        console.log("from navbar : ", menuRes);
+        // console.log("from navbar : ", menuRes);
 
         setMenus(menuRes.data.data.items);
         const settingsRes = await axiosInstance.get("/frontend/settings");

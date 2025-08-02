@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 
 const GetAQuote = ({ visible, onClose, productName, productId }) => {
   const [isClient, setIsClient] = useState(false);
-  if (!visible) return null;
+  
 
   const [formData, setFormData] = useState({
     subject: "Quotation Query",
@@ -46,7 +46,7 @@ const GetAQuote = ({ visible, onClose, productName, productId }) => {
     // Handle form submission, e.g., send data to an API
     try {
       const response = await axiosInstance.post('/contacts/create', formData); // Replace with your API endpoint
-
+console.log("response",response)
       toast.success("Your query has been submitted", {
         position: "bottom-left", // Position toast in the bottom-left corner
       });
@@ -60,6 +60,7 @@ const GetAQuote = ({ visible, onClose, productName, productId }) => {
     }
   };
 
+  if (!visible) return null;
   if (!isClient) {
     return null; // You can return a fallback or null here
   }

@@ -114,7 +114,7 @@ function ProductSingleClient ({ slug,product }) {
                       onClick={openPopUp}
                       className='bg-navBg hover:bg-blue-700 p-2 px-4 rounded-sm w-fit font-semibold text-white text-sm text-center capitalize duration-200 ease-in-out'
                     >
-                      Get a quote
+                      Get a quote aaa
                     </button>
                   </p>
                 </div>
